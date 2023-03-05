@@ -34,8 +34,9 @@ const displayNumbers = function () {
 		return (currentNumber.textContent = this.textContent);
 
 	if (
-		previousNumber.textContent &&
-		mathSign.textContent &&
+		previousNumber.innerHTML &&
+		mathSign.innerHTML && 
+		currentNumber.innerHTML === '' &&
 		this.textContent === "."
 	)
 		return (currentNumber.textContent = "0.");
@@ -47,6 +48,11 @@ const operate = function () {
 	if (currentNumber.innerHTML === "0" && this.textContent === "-")
 		return (currentNumber.innerHTML = "-");
 
+	if (currentNumber.innerHTML === '0' && this.textContent !== '-') {
+		 previousNumber.innerHTML = '0';
+		 mathSign.innerHTML = this.innerHTML;
+		 currentNumber.innerHTML = ''
+	}
 	if (previousNumber.innerHTML === "" && currentNumber.innerHTML === "-")
 		return;
 
